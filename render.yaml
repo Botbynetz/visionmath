@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: mathvision
+    env: python
+    region: singapore
+    plan: free
+    buildCommand: "cd web && pip install -r requirements.txt"
+    startCommand: "cd web && gunicorn -w 2 -b 0.0.0.0:$PORT run:app"
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHON_VERSION
+        value: 3.11.9
